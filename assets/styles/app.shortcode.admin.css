@@ -1,0 +1,20 @@
+.viralcontentslider_thumbnail_lists {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.viralcontentslider_thumbnail_lists li {
+	display: inline-block;
+	vertical-align: top;
+	padding: 2%;
+	box-shadow: 0 0 3px #6B5555;
+	width: 220px;
+	margin: 5px;
+	cursor: pointer;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.viralcontentslider_thumbnail_lists li:hover{
+	box-shadow: 0 0 5px green;
+}
