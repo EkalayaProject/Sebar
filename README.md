@@ -26,3 +26,6 @@ Display related contents from RSS Feed URL. You only need to copy paste, or if y
 
 ### Custom Link
 Display related contens from custom link. Define your own custom link, description and of course the thumbnail that integrated with the WP Uploader.
+
+# Read More
+Please visit this [link](http://mtasuandi.com/category/sebar/ "Sebar at mtasuandi.com").
