@@ -3,35 +3,35 @@
 Plugin Name: Sebar
 Plugin URI: http://mtasuandi.com/
 Description: Display awesome related post for better user engagement.
-Version: 1.0
+Version: 1.0.0
 Author: M Teguh A Suandi
 Author URI: http://mtasuandi.com
-License: Copyright 2015, All rights reserved.
+License: MIT License.
 */
 
 /**
  * Prevent the plugin file accessed directly
  */
-if ( ! defined( 'ABSPATH' ) ) die( 'Cheating, uh?' );
+if ( ! defined( 'WPINC' ) ) die( 'Cheating, uh?' );
 
 /**
  * Defined values
  */
-define( 'VIRALCONTENTSLIDER_VERSION', '1.0' );
+define( 'VIRALCONTENTSLIDER_VERSION', '1.0.0' );
 define( 'VIRALCONTENTSLIDER_PLUGIN_SLUG', 'viraltrafficboost' );
 define( 'VIRALCONTENTSLIDER_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'VIRALCONTENTSLIDER_PLUGIN_ASSETS_URL', plugins_url( 'assets', __FILE__ ) );
 define( 'VIRALCONTENTSLIDER_LICENSE_URL', 'http://mtasuandi.com' );
 define( 'VIRALCONTENTSLIDER_AUTOUPDATE_URL', 'http://repositories.mtasuandi.com/jasmine/viraltrafficboost/metadata.json' );
-define( 'VIRALCONTENTSLIDER_LICENSE_STATUS', 'OK'/*get_option( 'viralcontentslider_license_status' )*/ );
+define( 'VIRALCONTENTSLIDER_LICENSE_STATUS', 'OK' );
 
-define( 'VCSEXTENSION_VERSION', '1.0' );
+define( 'VCSEXTENSION_VERSION', '1.0.0' );
 define( 'VCSEXTENSION_PLUGIN_SLUG', 'vtbextension' );
 define( 'VCSEXTENSION_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 define( 'VCSEXTENSION_PLUGIN_DIR', plugin_dir_path( __FILE__ ) . 'vtbextension/' );
 define( 'VCSEXTENSION_LICENSE_URL', 'http://mtasuandi.com' );
 define( 'VCSEXTENSION_AUTOUPDATE_URL', 'http://mtasuandi.com' );
-define( 'VCSEXTENSION_LICENSE_STATUS', 'OK'/*get_option( 'vcsextension_license_status' )*/ );
+define( 'VCSEXTENSION_LICENSE_STATUS', 'OK' );
 
 /**
  * Plugin class
@@ -47,7 +47,6 @@ class ViralContentSlider {
 		register_deactivation_hook( __FILE__, array( $this, 'viralcontentslider_run_deactivation' ) );
 		add_action( 'init', array( $this, 'viralcontentslider_init' ) );
 		add_action( 'admin_menu', array( $this, 'viralcontentslider_admin_menu' ) );
-		add_action( 'admin_init', array( $this, 'viralcontentslider_handle_license' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'viralcontentslider_admin_enqueue_scripts' ) );
 		add_action( 'admin_init', array( $this, 'viralcontentslider_handle_viral' ) );
 		add_action( 'admin_init', array( $this, 'viralcontentslider_handle_options' ) );
@@ -514,22 +513,12 @@ SQL;
 	 * Display license menu if the plugin is not activated
 	 */
 	public function viralcontentslider_admin_menu() {
-		$licenseStatus = VIRALCONTENTSLIDER_LICENSE_STATUS;
-		if ( empty( $licenseStatus ) ) {
-			add_menu_page( __( 'Activate - Sebar', VIRALCONTENTSLIDER_PLUGIN_SLUG . '_activate' ),
-				__( 'Sebar', VIRALCONTENTSLIDER_PLUGIN_SLUG . '_activate' ),
-				'manage_options',
-				VIRALCONTENTSLIDER_PLUGIN_SLUG . '_activate',
-				array( $this, 'viralcontentslider_license_page' ), 'dashicons-lock'
-			);
-		} else {
-			add_menu_page( __( 'Sebar', VIRALCONTENTSLIDER_PLUGIN_SLUG ),
-				__( 'Sebar', VIRALCONTENTSLIDER_PLUGIN_SLUG ),
-				'manage_options',
-				VIRALCONTENTSLIDER_PLUGIN_SLUG,
-				array( $this, 'viralcontentslider_main_page' ), 'dashicons-share-alt'
-			);
-		}
+		add_menu_page( __( 'Sebar', VIRALCONTENTSLIDER_PLUGIN_SLUG ),
+			__( 'Sebar', VIRALCONTENTSLIDER_PLUGIN_SLUG ),
+			'manage_options',
+			VIRALCONTENTSLIDER_PLUGIN_SLUG,
+			array( $this, 'viralcontentslider_main_page' ), 'dashicons-share-alt'
+		);
 	}
 
 	/**
@@ -537,63 +526,6 @@ SQL;
 	 */
 	public function viralcontentslider_license_page() {
 		require_once( VIRALCONTENTSLIDER_PLUGIN_DIR . 'views/license/license.php' );
-	}
-
-	/**
-	 * Handle license activation
-	 * It will make a request through PHP CURL or internal WordPress function wp_remote_get to the licensing server
-	 */
-	public function viralcontentslider_handle_license() {
-		if ( !empty( $_POST['viralcontentslider_validate_license'] ) && $_POST['viralcontentslider_validate_license'] == 'Activate License' ) {
-			$licenseEmail = sanitize_text_field( $_POST['biztechlicenseemail'] );
-
-			if ( empty( $licenseEmail ) ) {
-				echo '<div class="error"><p>Please enter license email.</p></div>';
-			}
-
-			$apiParamsTest = array(
-				'action' => urlencode( 'testconnection' ),
-			);
-
-			$apiTestUrl = add_query_arg( $apiParamsTest, VIRALCONTENTSLIDER_LICENSE_URL );
-			$connectTest = wp_remote_get( $apiTestUrl );
-			if ( is_wp_error( $connectTest ) ) {
-				$connectTest = $this->cCurl( $apiTestUrl );
-			} else {
-				$connectTest = wp_remote_retrieve_body( $connectTest );
-			}
-
-			if ( $connectTest != 'OK' ) {
-				echo <<<ERRORMASGAN
-<div class="error"><p>Unable to connect to the licensing server. Please contact <a href="mailto:support@bwipress.com">support@bwipress.com</a> to get assistance with activating your license.</p></div>
-ERRORMASGAN;
-			} else {
-				if ( !empty( $licenseEmail ) ) {
-					$apiParams = array(
-						'action' => urlencode( 'activatelicense' ),
-						'biztechlicenseemail' => urlencode( trim( $licenseEmail ) ),
-						'biztechlicensedomain' => urlencode( $_SERVER['SERVER_NAME'] ),
-						'biztechlicensepluginname' => urlencode( VIRALCONTENTSLIDER_PLUGIN_SLUG )
-					);
-
-					$urlApi = add_query_arg( $apiParams, VIRALCONTENTSLIDER_LICENSE_URL );
-					$dataLicense = wp_remote_get( $urlApi );
-					if ( is_wp_error( $dataLicense ) ) {
-						$dataLicense = $this->cCurl( $urlApi );
-					} else {
-						$dataLicense = wp_remote_retrieve_body( $dataLicense );
-					}
-
-					if ( !empty( $dataLicense ) ) {
-						$exc = explode( ':', $dataLicense );
-						update_option( 'viralcontentslider_license_status', $exc[0] . date( 'Y-m-d H:i:s' ) );
-						wp_safe_redirect( admin_url() . 'admin.php?page=' . VIRALCONTENTSLIDER_PLUGIN_SLUG );
-					} else {
-						echo '<div class="error"><p>Invalid license!</p></div>';
-					}
-				}
-			}
-		}
 	}
 
 	/**
