@@ -12,7 +12,7 @@ License: MIT License.
 /**
  * Prevent the plugin file accessed directly
  */
-if ( ! defined( 'WPINC' ) ) die( 'Cheating, uh?' );
+if ( ! defined( 'ABSPATH' ) ) die( 'Cheating, uh?' );
 
 /**
  * Defined values
