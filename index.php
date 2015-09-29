@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Sebar
-Plugin URI: http://mtasuandi.com/
+Plugin URI: http://mtasuandi.com
 Description: Display awesome related post for better user engagement.
 Version: 1.0.0
 Author: M Teguh A Suandi
