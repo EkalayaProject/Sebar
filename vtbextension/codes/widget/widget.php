@@ -11,8 +11,8 @@ class VcsExtension_Widget extends WP_Widget {
 	public function __construct() {
 		parent::__construct(
 	 		VCSEXTENSION_PLUGIN_SLUG . '_widget',
-			'Viral Traffic Boost',
-			array( 'description' => __( 'Viral Traffic Boost', VCSEXTENSION_PLUGIN_SLUG ), )
+			'Sebar',
+			array( 'description' => __( 'Display awesome related contents.', VCSEXTENSION_PLUGIN_SLUG ), )
 		);
 	}
 

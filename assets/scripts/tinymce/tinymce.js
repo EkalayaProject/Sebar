@@ -8,7 +8,7 @@
 		jQuery(data).appendTo("body").hide();
 		jQuery(document).on('click', '.viralcontentslider_add_shortcode', function(){
       var shortcodeid = jQuery(this).data("id");
-			tinyMCE.activeEditor.execCommand('mceInsertContent', false, '[viraltrafficboost id="' + shortcodeid + '"]');
+			tinyMCE.activeEditor.execCommand('mceInsertContent', false, '[sebar id="' + shortcodeid + '"]');
 			tb_remove();
 		});
 	});
@@ -16,10 +16,10 @@
   tinymce.create('tinymce.plugins.ViralContentSlider',{
     init : function(ed, url){
       ed.addButton('viralcontentslider',{
-        title : 'Viral Traffic Boost',
+        title : 'Sebar',
         image : url+'/tinymceicon.png',
         onclick : function(){
-          tb_show('Viral Traffic Boost - Pick', '#TB_inline?width=750&height=550&inlineId=vcs_shortcodes');
+          tb_show('Sebar - Pick', '#TB_inline?width=750&height=550&inlineId=vcs_shortcodes');
         }
       });
     },
@@ -28,10 +28,10 @@
     },
     getInfo: function(){
       return{
-        longname : "Viral Traffic Boost",
-        author : 'Teguh Muhammad',
+        longname : "Sebar",
+        author : 'M Teguh A Suandi',
         authorurl : 'https://facebook.com/teguhsuandi',
-        infourl : 'http://kreaxy.com/',
+        infourl : 'http://mtasuandi.com/',
         version : "1.0"
       };
     }

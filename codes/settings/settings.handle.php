@@ -41,9 +41,17 @@ if ( isset( $_POST['viralcontentslider_settings_form'] ) ) {
 		$twitterUsername = sanitize_text_field( $_POST['settings_social_media_twitter_username'] );
 	endif;
 
+	$vCronInterval = get_option( 'viralcontentslider_settings_cron_interval' );
+	$vCronType = get_option( 'viralcontentslider_settings_cron_type' );
+
 	# Cron
 	update_option( 'viralcontentslider_settings_cron_interval', $cronInterval );
 	update_option( 'viralcontentslider_settings_cron_type', $cronType );
+	# Clear existing schedule if not same
+	
+	if ( $cronInterval != $vCronInterval || $cronType != $vCronType ) {
+		wp_clear_scheduled_hook( 'viralcontentslider_fetch_feed_event' );
+	}
 
 	# Delete Old data
 	update_option( 'settings_cron_purge_old_data_interval', $deleteOldDataInterval );
