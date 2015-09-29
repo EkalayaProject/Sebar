@@ -526,7 +526,7 @@ SQL;
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_HEADER => false,
 			CURLOPT_FOLLOWLOCATION => true,
-			CURLOPT_USERAGENT => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:34.0) Gecko/20100101 Firefox/34.0',
+			CURLOPT_USERAGENT => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:40.0) Gecko/20100101 Firefox/40.0',
 			CURLOPT_AUTOREFERER => true,
 			CURLOPT_TIMEOUT => 120,
 			CURLOPT_MAXREDIRS => 10,
