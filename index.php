@@ -21,17 +21,11 @@ define( 'VIRALCONTENTSLIDER_VERSION', '1.0.0' );
 define( 'VIRALCONTENTSLIDER_PLUGIN_SLUG', 'viraltrafficboost' );
 define( 'VIRALCONTENTSLIDER_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'VIRALCONTENTSLIDER_PLUGIN_ASSETS_URL', plugins_url( 'assets', __FILE__ ) );
-define( 'VIRALCONTENTSLIDER_LICENSE_URL', 'http://mtasuandi.com' );
-define( 'VIRALCONTENTSLIDER_AUTOUPDATE_URL', 'http://repositories.mtasuandi.com/jasmine/viraltrafficboost/metadata.json' );
-define( 'VIRALCONTENTSLIDER_LICENSE_STATUS', 'OK' );
 
 define( 'VCSEXTENSION_VERSION', '1.0.0' );
 define( 'VCSEXTENSION_PLUGIN_SLUG', 'vtbextension' );
 define( 'VCSEXTENSION_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 define( 'VCSEXTENSION_PLUGIN_DIR', plugin_dir_path( __FILE__ ) . 'vtbextension/' );
-define( 'VCSEXTENSION_LICENSE_URL', 'http://mtasuandi.com' );
-define( 'VCSEXTENSION_AUTOUPDATE_URL', 'http://mtasuandi.com' );
-define( 'VCSEXTENSION_LICENSE_STATUS', 'OK' );
 
 /**
  * Plugin class
@@ -498,14 +492,10 @@ SQL;
 	}
 
 	/**
-	 * It's important to implement the Autoupdate feature inside the plugin
-	 * More info please visit http://w-shadow.com/blog/2010/09/02/automatic-updates-for-any-plugin/
+	 * Include the extensions plugin
 	 */
 	public function viralcontentslider_init() {
 		require_once( VIRALCONTENTSLIDER_PLUGIN_DIR . 'vtbextension/vcsextension.php' );
-		require_once( VIRALCONTENTSLIDER_PLUGIN_DIR . 'libraries/autoupdate/plugin-autoupdate.php' );
-
-		$uChecker = new PluginUpdateChecker( VIRALCONTENTSLIDER_AUTOUPDATE_URL, __FILE__, VIRALCONTENTSLIDER_PLUGIN_SLUG );
 	}
 
 	/**
