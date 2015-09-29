@@ -29,3 +29,6 @@ Display related contens from custom link. Define your own custom link, descripti
 
 # Read More
 Please visit this [link](http://mtasuandi.com/category/sebar/ "Sebar at mtasuandi.com").
+
+# License
+GPLv2 or later.

@@ -6,7 +6,7 @@ Description: Display awesome related post for better user engagement.
 Version: 1.0.0
 Author: M Teguh A Suandi
 Author URI: http://mtasuandi.com
-License: MIT License.
+License: GPLv2 or later.
 */
 
 /**
