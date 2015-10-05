@@ -1,6 +1,9 @@
 # Sebar - WordPress Plugin
 Sebar is a WordPress Plugin for displaying related contents on your WordPress Post. The related contents can be from your internal WP Post or external contents like YouTube video, custom links and of course, RSS Feed.
 
+# Download
+Sebar now hosted on WordPress.org. Please visit this [link](https://wordpress.org/plugins/sebar/ "Sebar at WordPress.org") to download the latest stable version.
+
 # Sebar Full Features:
 
 1. Display related content from:
