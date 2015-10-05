@@ -51,7 +51,8 @@ SLIDER;
 					$videoImageHTML = '<img class="vcs_image" src="' . $imageThumbnail . '"/>';
 				}
 
-				$vId = end( explode( '/', $video->link ) );
+				$oB = explode( '/', $video->link );
+				$vId = end( $oB );
 				$videoLink = $video->link;//'https://www.youtube.com/watch?v=' . $vId;
 				$openInNewTab = '';
 
