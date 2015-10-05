@@ -544,8 +544,15 @@ SQL;
 	 * Handle navigation for the main page
 	 */
 	public function viralcontentslider_main_page() {
-		$tab = sanitize_text_field( $_GET['tab'] );
-		$node = sanitize_text_field( $_GET['node'] );
+		$tab = '';
+		if ( isset( $_GET['tab'] ) ) {
+			$tab = sanitize_text_field( $_GET['tab'] );
+		}
+
+		$node = '';
+		if ( isset( $_GET['node'] ) ) {
+			$node = sanitize_text_field( $_GET['node'] );
+		}
 
 		switch ( $tab ) {
 			case 'viral':
