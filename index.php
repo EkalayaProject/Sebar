@@ -3,7 +3,7 @@
 Plugin Name: Sebar
 Plugin URI: http://mtasuandi.com
 Description: Display awesome related post for better user engagement.
-Version: 1.0
+Version: 1.0.1
 Author: M Teguh A Suandi
 Author URI: http://mtasuandi.com
 License: GPLv2 or later.
@@ -17,12 +17,12 @@ if ( ! defined( 'ABSPATH' ) ) die( 'Cheating, uh?' );
 /**
  * Defined values
  */
-define( 'VIRALCONTENTSLIDER_VERSION', '1.0' );
+define( 'VIRALCONTENTSLIDER_VERSION', '1.0.1' );
 define( 'VIRALCONTENTSLIDER_PLUGIN_SLUG', 'viraltrafficboost' );
 define( 'VIRALCONTENTSLIDER_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'VIRALCONTENTSLIDER_PLUGIN_ASSETS_URL', plugins_url( 'assets', __FILE__ ) );
 
-define( 'VCSEXTENSION_VERSION', '1.0' );
+define( 'VCSEXTENSION_VERSION', '1.0.1' );
 define( 'VCSEXTENSION_PLUGIN_SLUG', 'vtbextension' );
 define( 'VCSEXTENSION_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 define( 'VCSEXTENSION_PLUGIN_DIR', plugin_dir_path( __FILE__ ) . 'vtbextension/' );
